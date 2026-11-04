@@ -11,34 +11,34 @@ Self-assessment of SoC1693 release v.1.0.0: TRL 3, the value in `doc/info.json`.
 
 - [x] Is the IP functionality clearly described? (`doc/Datasheet.md`)
 - [x] Is the IP principle of operation explained in detail? (`doc/Datasheet.md`, `doc/Specification.md`)
-- [x] Are the IP architecture design equations fully listed? (inverter sizing in `SoC1693-main/macros/inverter/scripts/sizing/sizing_inverter.ipynb`, the digital part is defined by its RTL)
-- [x] Do authors supply any mixed-signal HDL functional model (e.g. Verilog-A) of the IP? (SystemVerilog RTL of the digital part in `SoC1693-main/rtl/` and `SoC1693-main/macros/counter/rtl/`, no Verilog-A model, the analog inverter is simulated at transistor level)
-- [x] Are functional simulation results of the IP reported for a typical case? (`SoC1693-main/testbenches/cocotb/results/chip_top_tb_rtl.log`)
+- [x] Are the IP architecture design equations fully listed? (inverter sizing in [`macros/inverter/scripts/sizing/sizing_inverter.ipynb`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/macros/inverter/scripts/sizing/sizing_inverter.ipynb), the digital part is defined by its RTL)
+- [x] Do authors supply any mixed-signal HDL functional model (e.g. Verilog-A) of the IP? (SystemVerilog RTL of the digital part in [`rtl/`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/tree/60166ac618be6cc312253b7fed33f8478d044a55/rtl) and [`macros/counter/rtl/`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/tree/60166ac618be6cc312253b7fed33f8478d044a55/macros/counter/rtl), no Verilog-A model, the analog inverter is simulated at transistor level)
+- [x] Are functional simulation results of the IP reported for a typical case? ([`chip_top_tb_rtl.log`](../release/v.1.0.0/doc/sim/chip_top_tb_rtl.log))
 
 ## TRL2 - Concept formulation
 
 - [x] Is the IP architecture described at block level? (`doc/Specification.md`)
-- [x] Are the specifications of each individual block of the IP architecture clearly identified? (`SoC1693-main/macros/counter/README.md`, `SoC1693-main/macros/inverter/README.md`)
+- [x] Are the specifications of each individual block of the IP architecture clearly identified? ([`macros/counter/README.md`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/macros/counter/README.md), [`macros/inverter/README.md`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/macros/inverter/README.md))
 - [x] If the IP architecture can be configured by means of internal registers, is their mapping declared? (not applicable, the chip has no configuration registers)
-- [x] Do authors supply a complete test bench to validate the IP block-level architecture? (`SoC1693-main/testbenches/cocotb/chip_top_tb.py`)
-- [x] Is any verification procedure given to check the IP block-level performance figures? (`make sim-rtl-cocotb` in the design source, see `SoC1693-main/README.md`)
-- [x] Are architectural simulation results of the IP reported for a typical case? (`SoC1693-main/testbenches/cocotb/results/chip_top_tb_rtl.log`, 6 of 6 tests pass)
+- [x] Do authors supply a complete test bench to validate the IP block-level architecture? ([`testbenches/cocotb/chip_top_tb.py`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/testbenches/cocotb/chip_top_tb.py))
+- [x] Is any verification procedure given to check the IP block-level performance figures? (`make sim-rtl-cocotb` in the design source, see its [`README.md`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/README.md))
+- [x] Are architectural simulation results of the IP reported for a typical case? ([`chip_top_tb_rtl.log`](../release/v.1.0.0/doc/sim/chip_top_tb_rtl.log), 6 of 6 tests pass)
 
 ## TRL3 - Proof of concept at schematic level
 
-- [x] Are the IP schematics available at transistor level (analog parts) and gate level (digital parts)? (`SoC1693-main/macros/inverter/schematic/`, gate level in `SoC1693-main/netlist/layout/chip_top.pnl.v`)
+- [x] Are the IP schematics available at transistor level (analog parts) and gate level (digital parts)? ([`macros/inverter/schematic/`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/tree/60166ac618be6cc312253b7fed33f8478d044a55/macros/inverter/schematic), gate level in [`release/v.1.0.0/netlist/SoC1693.v`](../release/v.1.0.0/netlist/SoC1693.v))
 - [x] Are all dependencies of the IP schematics on logic libraries declared? (`doc/info.json`, `dependencies`)
-- [x] Are the analog IP ports fully specified at electrical level? (`doc/Datasheet.md`, `SoC1693-main/macros/inverter/README.md`)
+- [x] Are the analog IP ports fully specified at electrical level? (`doc/Datasheet.md`, [`macros/inverter/README.md`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/macros/inverter/README.md))
 - [x] Are the digital IP ports fully specified at logical level (e.g. protocols)? (`doc/Datasheet.md`)
-- [x] Do authors supply a mixed-signal test bench to validate the IP schematics? (`SoC1693-main/testbenches/tran/xschem/chip_top_tb_tran.sch`)
+- [x] Do authors supply a mixed-signal test bench to validate the IP schematics? ([`testbenches/xschem/chip_top_tb_tran.sch`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/testbenches/xschem/chip_top_tb_tran.sch))
 - [x] Is any verification procedure given to check the IP schematic performance figures? (`make sim-gl-xschem` in the design source)
-- [x] Are mixed-signal simulation results of the IP schematics reported for a typical case? (`SoC1693-main/testbenches/tran/xschem/plot_simulations/figures/`)
+- [x] Are mixed-signal simulation results of the IP schematics reported for a typical case? ([`testbenches/xschem/plot_simulations/figures/`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/tree/60166ac618be6cc312253b7fed33f8478d044a55/testbenches/xschem/plot_simulations/figures))
 
 ## TRL4 - Full design at schematic level
 
 - [ ] Are the mixed-signal simulation results of the IP schematics extended to process, supply and temperature (PVT) corners? (in part: `inverter_top` over corners in CACE, the chip timing over six STA corners, the chip-level mixed-signal bench at the typical corner only)
 - [ ] Are the mixed-signal simulation results of the IP schematics extended to technology mismatching? (in part: `inverter_top` Monte Carlo mismatch in CACE only)
-- [x] Are the authors defining the mixed-signal supply domains of the IP schematics and their individual power requirements? (`doc/Datasheet.md`, power per corner in `SoC1693-main/timing/*_power.rpt`)
+- [x] Are the authors defining the mixed-signal supply domains of the IP schematics and their individual power requirements? (`doc/Datasheet.md`, power per corner in [`verification/reports/stapostpnr_*_power.rpt`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/tree/60166ac618be6cc312253b7fed33f8478d044a55/verification/reports))
 - [ ] Does the IP description include any power consumption model (e.g. as a function of input stimuli)?
 
 ## TRL5 - Full design at layout level

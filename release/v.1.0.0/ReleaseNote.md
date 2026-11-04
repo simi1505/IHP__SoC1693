@@ -10,11 +10,12 @@ Status: **preliminary**, 2026-11-02. This release registers the design for the N
 | `netlist/SoC1693.v` | 2,681,789 | `57ffb6b9f8f7cbae2954a849e14ecf8602d3400fbd4ff883b67c230efa6b21b4` |
 | `doc/Signoff.md` | | DRC, LVS and simulation results of this release |
 | `doc/drc/` | | KLayout result databases of the minimal precheck (0 items) and the regular deck (88 items) |
+| `doc/sim/` | | cocotb logs of the RTL and gate-level simulations, 6 of 6 tests pass in each |
 | `doc/img/` | | layout renders and bond plan |
 
 ## Provenance
 
-- The layout was built on 2026-08-26 by the LibreLane Chip flow (run `RUN_2026-08-26_09-58-20`) from commit `e8df994` of [iic-jku/ihp-sg13cmos5l-ams-chip-template](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template), followed by metal fill and the chip logo. Its file there is `layout/chip_top_logo_fill.gds.gz` (SHA-256 `6910a748aac887f5ae998b919ae0a8231376559316311e8ff05d2dfdd5081de4`), unchanged up to commit `60166ac`.
+- The layout was built on 2026-08-26 by the LibreLane Chip flow (run `RUN_2026-08-26_09-58-20`) from commit `e8df994` of [iic-jku/ihp-sg13cmos5l-ams-chip-template](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template), followed by metal fill and the chip logo. Its file there is `layout/chip_top_logo_fill.gds.gz` (SHA-256 `6910a748aac887f5ae998b919ae0a8231376559316311e8ff05d2dfdd5081de4`), unchanged up to commit `60166ac`. The design sources and the flow reports are in that repository, and `doc/` links each file it cites at commit `60166ac`.
 - `gds/SoC1693.gds.gz` is that file with the top cell renamed from `chip_top_logo_fill` to `SoC1693`, written by KLayout 0.30.12 in IIC-OSIC-TOOLS 2026.10 with the save options of the submission guidance: database unit 0.001 µm, no PCell or library context, zero-length paths converted to boundaries, maximum cell name length 32000, maximum 8000 vertices. The source holds no zero-length path, and a hierarchical KLayout `LayoutDiff` finds the geometry of all 273 cells identical to the source.
 - `netlist/SoC1693.v` is the powered post-PnR Verilog netlist of the same build (`netlist/pnl/chip_top.pnl.v`, SHA-256 `7aff2479a5735994ef8695e9db5b1123ca21012c4d535d6f94d843d8dfcc5247`) with the top module renamed from `chip_top` to `SoC1693`. In the layout, `SoC1693` holds the cell `chip_top` plus fill, logos and seal ring, none of which adds devices.
 

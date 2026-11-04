@@ -1,6 +1,6 @@
 # SoC1693 Specification
 
-This document describes the architecture, the physical implementation and the verification status of SoC1693. The pinout and the functions seen from the pins are in [Datasheet.md](Datasheet.md). The numbers below are taken from the design source, [iic-jku/ihp-sg13cmos5l-ams-chip-template](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template), whose `doc/specifications.md`, `doc/pinout.md` and `doc/floorplan.md` hold the full description.
+This document describes the architecture, the physical implementation and the verification status of SoC1693. The pinout and the functions seen from the pins are in [Datasheet.md](Datasheet.md). The numbers below are taken from the design source, [iic-jku/ihp-sg13cmos5l-ams-chip-template](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template) at commit `60166ac`, whose [`doc/specifications.md`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/doc/specifications.md), [`doc/pinout.md`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/doc/pinout.md) and [`doc/floorplan.md`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/doc/floorplan.md) hold the full description.
 
 ## Architecture
 
@@ -13,7 +13,7 @@ This document describes the architecture, the physical implementation and the ve
 | Glue logic | `sg13cmos5l_stdcell` | | standard cells | enable gating, bidirectional pad control, SRAM output XOR |
 | Logos | `sg13cmos5l_ip__jku`, `sg13cmos5l_ip__jku_names` | 2 | layout only | 100 x 100 µm, Metal4, no devices |
 
-The top-level RTL is `SoC1693-main/rtl/chip_top.sv` (pad ring) and `SoC1693-main/rtl/chip_core.sv` (macro instances and glue logic). Both macros have their own source, flow and verification under `SoC1693-main/macros/`.
+The top-level RTL is [`rtl/chip_top.sv`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/rtl/chip_top.sv) (pad ring) and [`rtl/chip_core.sv`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/rtl/chip_core.sv) (macro instances and glue logic). Both macros have their own source, flow and verification under [`macros/`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/tree/60166ac618be6cc312253b7fed33f8478d044a55/macros).
 
 ## Physical Implementation
 
@@ -22,9 +22,9 @@ The top-level RTL is `SoC1693-main/rtl/chip_top.sv` (pad ring) and `SoC1693-main
 | Die area | `[0, 0, 1600, 1600]` µm |
 | Core area | `[365, 365, 1235, 1235]` µm |
 | Metal stack | Metal1 to Metal4 plus TopMetal1 (no Metal5, no TopMetal2) |
-| Flow | LibreLane Chip flow (`SoC1693-main/flow/librelane/config.yaml`), seal ring from its `KLayout.Sealring` step |
-| Clock constraint | 20 ns (`SoC1693-main/flow/librelane/chip_top.sdc`) |
-| PDN | core ring and stripes on Metal4 (vertical) and TopMetal1 (horizontal), 15 µm wide ring with 5 µm spacing (`SoC1693-main/flow/librelane/pdn_cfg.tcl`) |
+| Flow | LibreLane Chip flow ([`flow/librelane/config.yaml`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/flow/librelane/config.yaml)), seal ring from its `KLayout.Sealring` step |
+| Clock constraint | 20 ns ([`flow/librelane/chip_top.sdc`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/flow/librelane/chip_top.sdc)) |
+| PDN | core ring and stripes on Metal4 (vertical) and TopMetal1 (horizontal), 15 µm wide ring with 5 µm spacing ([`flow/librelane/pdn_cfg.tcl`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/flow/librelane/pdn_cfg.tcl)) |
 | Fill | metal fill and the chip logo on TopMetal1 added after the LibreLane run |
 
 Macro placement, lower-left corner and orientation:
@@ -47,14 +47,14 @@ Status of release v.1.0.0. Details and file hashes are in [release/v.1.0.0/Relea
 
 | Check | Result | Evidence |
 | --- | --- | --- |
-| RTL simulation (cocotb, Icarus Verilog) | 6 of 6 tests pass | `SoC1693-main/testbenches/cocotb/results/chip_top_tb_rtl.log` |
-| Gate-level simulation (cocotb, post-PnR netlist) | 6 of 6 tests pass | `SoC1693-main/testbenches/cocotb/results/chip_top_tb_gl.log` |
-| Mixed-signal transient (Xschem, ngspice with XSPICE digital models, typical corner) | waveforms of counters, digital and analog inverters | `SoC1693-main/testbenches/tran/xschem/plot_simulations/figures/` |
-| Static timing, six corners | no setup or hold violation, worst setup slack 2.18 ns, worst hold slack 0.107 ns, 21 max-slew violations at the slow corners | `SoC1693-main/timing/` |
-| IR drop, `VDD` at `nom_typ_1p50V_25C` | 1.8 mV worst case (0.12 %), 4.16 mW total power | `SoC1693-main/verification/reports/irdrop.rpt` |
-| Antenna | no violation | `SoC1693-main/verification/reports/antenna_summary.rpt` |
-| LVS in the LibreLane flow (Netgen, standard cells and macros as black boxes) | circuits match uniquely | `SoC1693-main/verification/lvs/lvs.netgen.rpt` |
+| RTL simulation (cocotb, Icarus Verilog) | 6 of 6 tests pass | [`chip_top_tb_rtl.log`](../release/v.1.0.0/doc/sim/chip_top_tb_rtl.log) |
+| Gate-level simulation (cocotb, post-PnR netlist) | 6 of 6 tests pass | [`chip_top_tb_gl.log`](../release/v.1.0.0/doc/sim/chip_top_tb_gl.log) |
+| Mixed-signal transient (Xschem, ngspice with XSPICE digital models, typical corner) | waveforms of counters, digital and analog inverters | [`testbenches/xschem/plot_simulations/figures/`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/tree/60166ac618be6cc312253b7fed33f8478d044a55/testbenches/xschem/plot_simulations/figures) |
+| Static timing, six corners | no setup or hold violation, worst setup slack 2.18 ns, worst hold slack 0.107 ns, 21 max-slew violations at the slow corners | [`verification/reports/stapostpnr_summary.rpt`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/verification/reports/stapostpnr_summary.rpt) |
+| IR drop, `VDD` at `nom_typ_1p50V_25C` | 1.8 mV worst case (0.12 %), 4.16 mW total power | [`verification/reports/irdrop.rpt`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/verification/reports/irdrop.rpt) |
+| Antenna | no violation | [`verification/reports/antenna_summary.rpt`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/verification/reports/antenna_summary.rpt) |
+| LVS in the LibreLane flow (Netgen, standard cells and macros as black boxes) | circuits match uniquely | [`verification/reports/lvs.netgen.rpt`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/verification/reports/lvs.netgen.rpt) |
 | DRC on the release GDS, minimal precheck | no violation | `release/v.1.0.0/doc/Signoff.md` |
 | DRC on the release GDS, regular deck with density | 78 recommended pad-rule items in the pad ring and 10 `NW.d` items at decap NWell ties, reviewed as no violation of the layout | `release/v.1.0.0/doc/Signoff.md` |
 | Full-chip transistor-level LVS on the release GDS | in progress for the final release | |
-| Macro sign-off (`counter_top`, `inverter_top`) | DRC, LVS and Magic PEX per macro, CACE over corners and mismatch for `inverter_top` | `SoC1693-main/macros/*/README.md` |
+| Macro sign-off (`counter_top`, `inverter_top`) | DRC, LVS and Magic PEX per macro, CACE over corners and mismatch for `inverter_top` | [`macros/counter/README.md`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/macros/counter/README.md), [`macros/inverter/README.md`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/macros/inverter/README.md) |

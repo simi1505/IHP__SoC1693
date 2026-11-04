@@ -31,7 +31,7 @@ SoC1693 is the demonstrator chip of the open-source analog mixed-signal chip tem
 
 ## Pinout
 
-Package pins are numbered counter-clockwise from pin 1. The bond plan is [SoC1693_bondplan_white.png](../release/v.1.0.0/doc/img/SoC1693_bondplan_white.png) and its full bond table is [packaging/result.md](../SoC1693-main/packaging/result.md).
+Package pins are numbered counter-clockwise from pin 1. The bond plan is [SoC1693_bondplan_white.png](../release/v.1.0.0/doc/img/SoC1693_bondplan_white.png) and its full bond table is [packaging/result.md](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/packaging/result.md).
 
 | Pin | Pad | Type | Function |
 | --- | --- | --- | --- |

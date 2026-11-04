@@ -44,13 +44,13 @@ The waiver status of these items is our review, not a foundry decision.
 
 | Check | Result |
 | --- | --- |
-| Netgen LVS in the LibreLane flow, standard cells, IO cells and macros as black boxes | "Circuits match uniquely" (`SoC1693-main/verification/lvs/lvs.netgen.rpt`) |
+| Netgen LVS in the LibreLane flow, standard cells, IO cells and macros as black boxes | "Circuits match uniquely" ([`verification/reports/lvs.netgen.rpt`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/blob/60166ac618be6cc312253b7fed33f8478d044a55/verification/reports/lvs.netgen.rpt)) |
 | KLayout LVS of the release GDS against a transistor-level CDL of the whole chip | in progress for the final release |
 
 ## Simulation
 
 | Check | Result |
 | --- | --- |
-| cocotb, RTL, Icarus Verilog | 6 of 6 tests pass (`SoC1693-main/testbenches/cocotb/results/chip_top_tb_rtl.log`) |
-| cocotb, post-PnR gate-level netlist | 6 of 6 tests pass (`SoC1693-main/testbenches/cocotb/results/chip_top_tb_gl.log`) |
-| Xschem and ngspice transient with XSPICE digital models, typical corner | `SoC1693-main/testbenches/tran/xschem/plot_simulations/figures/` |
+| cocotb, RTL, Icarus Verilog | 6 of 6 tests pass ([`chip_top_tb_rtl.log`](sim/chip_top_tb_rtl.log)) |
+| cocotb, post-PnR gate-level netlist | 6 of 6 tests pass ([`chip_top_tb_gl.log`](sim/chip_top_tb_gl.log)) |
+| Xschem and ngspice transient with XSPICE digital models, typical corner | [`testbenches/xschem/plot_simulations/figures/`](https://github.com/iic-jku/ihp-sg13cmos5l-ams-chip-template/tree/60166ac618be6cc312253b7fed33f8478d044a55/testbenches/xschem/plot_simulations/figures) |
